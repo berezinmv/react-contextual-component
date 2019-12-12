@@ -1,0 +1,20 @@
+{
+  "name": "react-context-component",
+  "version": "0.0.0",
+  "description": "React library for using different components based on current context",
+  "main": "lib/createComponentContext.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maxim Berezin <maxim.v.berezin@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^16.9.16",
+    "husky": "^3.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "react": "^16.12.0",
+    "typescript": "^3.7.3"
+  }
+}
