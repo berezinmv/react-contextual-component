@@ -22,9 +22,9 @@ function createComponentContext<T, C>(fn: ContextFunction<T, C>) {
       return (
         <RConsumer>
           {value => {
-            const ContextComponent = componentMap.get(value);
+            const ContextualComponent = componentMap.get(value);
 
-            return <ContextComponent {...props} />;
+            return <ContextualComponent {...props} />;
           }}
         </RConsumer>
       );

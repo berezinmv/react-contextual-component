@@ -1,5 +1,5 @@
 {
-  "name": "react-context-component",
+  "name": "react-contextual-component",
   "version": "0.0.0",
   "description": "React library for using different components based on current context",
   "main": "lib/createComponentContext.js",
@@ -11,6 +11,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "repository": {
+    "url": "https://github.com/berezinmv/react-contextual-component"
   },
   "author": "Maxim Berezin <maxim.v.berezin@gmail.com>",
   "license": "ISC",
