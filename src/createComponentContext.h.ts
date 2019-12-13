@@ -1,9 +1,9 @@
 import { ComponentType } from "react";
 
-export type ContextFunction<T, C> = {
-  (args: Partial<T>): C;
+export type ContextFunction<T> = {
+  (args: Partial<T>): string;
 };
 
-export type ComponentMap<C, P> = {
-  get(key: C): ComponentType<P>;
+export type ComponentMap<P> = {
+  [key: string]: ComponentType<P>;
 };

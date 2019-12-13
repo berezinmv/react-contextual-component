@@ -1,21 +1,23 @@
-import React, { createContext, FC, ReactNode } from "react";
+import React, { createContext, FC, PropsWithChildren } from "react";
 import { ComponentMap, ContextFunction } from "./createComponentContext.h";
 
-function createComponentContext<T, C>(fn: ContextFunction<T, C>) {
-  const { Provider: RProvider, Consumer: RConsumer } = createContext<C>(null);
+function createComponentContext<T>(fn: ContextFunction<T>) {
+  const { Provider: RProvider, Consumer: RConsumer } = createContext<string>(
+    null
+  );
 
-  function Provider(props: T & { children: ReactNode }) {
+  function Provider(props: PropsWithChildren<T>) {
     const value = fn(props);
 
     return <RProvider value={value}>{props.children}</RProvider>;
   }
 
-  function createComponent<P>(componentMap: ComponentMap<C, P>): FC<P> {
+  function createComponent<P>(componentMap: ComponentMap<P>): FC<P> {
     return function(props: P) {
       return (
         <RConsumer>
           {value => {
-            const ContextualComponent = componentMap.get(value);
+            const ContextualComponent = componentMap[value];
 
             return <ContextualComponent {...props} />;
           }}
