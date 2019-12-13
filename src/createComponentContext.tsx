@@ -1,23 +1,16 @@
-import React, { ComponentType, createContext } from "react";
-
-type ContextFunction<T, C> = {
-  (args: Partial<T>): C;
-};
-
-type ComponentMap<C, P> = {
-  get(key: C): ComponentType<P>;
-};
+import React, { createContext, FC, ReactNode } from "react";
+import { ComponentMap, ContextFunction } from "./createComponentContext.h";
 
 function createComponentContext<T, C>(fn: ContextFunction<T, C>) {
   const { Provider: RProvider, Consumer: RConsumer } = createContext<C>(null);
 
-  function Provider(props: T) {
+  function Provider(props: T & { children: ReactNode }) {
     const value = fn(props);
 
-    return <RProvider value={value} />;
+    return <RProvider value={value}>{props.children}</RProvider>;
   }
 
-  function createComponent<P>(componentMap: ComponentMap<C, P>) {
+  function createComponent<P>(componentMap: ComponentMap<C, P>): FC<P> {
     return function(props: P) {
       return (
         <RConsumer>
