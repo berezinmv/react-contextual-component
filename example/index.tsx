@@ -2,35 +2,24 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import createComponentContext from "../src/createComponentContext";
 
-function getComponentId(args: { counter: number }) {
-  switch (args.counter) {
-    case 0:
-      return "zero";
-    case 1:
-      return "first";
-    case 2:
-      return "second";
-    default:
-      return "fallback";
-  }
-}
+type ContextValues = "mobile" | "desktop" | "highDPI";
 
-const { Provider, createComponent } = createComponentContext(getComponentId);
+const { Provider, createComponent } = createComponentContext<ContextValues>();
 
 const TestComponent = createComponent({
-  zero: () => <span>zero component</span>,
-  first: () => <span>first component</span>,
-  second: () => <span>second component</span>,
-  fallback: () => <span>fallback component</span>
+  mobile: () => <span>mobile component</span>,
+  desktop: () => <span>desktop component</span>,
+  highDPI: () => <span>highDPI component</span>
 });
 
 function Example() {
-  const [counter, setCounter] = useState(0);
+  const [contextValue, setContextValue] = useState<ContextValues>("mobile");
 
   return (
-    <Provider counter={counter}>
-      <button onClick={() => setCounter(counter + 1)}>increment</button>
-      <button onClick={() => setCounter(counter - 1)}>decrement</button>
+    <Provider value={contextValue}>
+      <button onClick={() => setContextValue("mobile")}>mobile</button>
+      <button onClick={() => setContextValue("desktop")}>desktop</button>
+      <button onClick={() => setContextValue("highDPI")}>highDPI</button>
       <br />
       <TestComponent />
     </Provider>

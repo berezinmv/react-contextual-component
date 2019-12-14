@@ -1,9 +1,7 @@
 import { ComponentType } from "react";
 
-export type ContextFunction<T> = {
-  (args: Partial<T>): string;
-};
+export type IndexType = string | number | symbol;
 
-export type ComponentMap<P> = {
-  [key: string]: ComponentType<P>;
+export type ComponentMap<P, K extends IndexType> = {
+  [key in K]: ComponentType<P>;
 };

@@ -14,45 +14,30 @@ boilerplate needed to implement such requirements.
 ## Example
 
 For full example refer to `examples/index.tsx`
+To start an example run `npm run example`
 
 ```typescript jsx
-// This function will decide what context is active at the moment
-function getComponentId(args: { counter: number }) {
-  switch (args.counter) {
-    case 0:
-      return "zero";
-    case 1:
-      return "first";
-    case 2:
-      return "second";
-    default:
-      return "fallback";
-  }
-}
+type ContextValues = "mobile" | "desktop" | "highDPI";
 
-// Generate Provider and component factory
-const { Provider, createComponent } = createComponentContext(getComponentId);
+// create Provider and component factory
+const { Provider, createComponent } = createComponentContext<ContextValues>();
 
-// This is contextual component
-// The rendered component depends on current context value
+// create contextual component (keys - possible context values)
 const TestComponent = createComponent({
-  zero: () => <span>zero component</span>,
-  first: () => <span>first component</span>,
-  second: () => <span>second component</span>,
-  fallback: () => <span>fallback component</span>
+  mobile: () => <span>mobile component</span>,
+  desktop: () => <span>desktop component</span>,
+  highDPI: () => <span>highDPI component</span>
 });
 
 function Example() {
-  const [counter, setCounter] = useState(0);
-
+  // ...
   return (
-    // props passed to provider will be arguments of a context function
-    <Provider counter={counter}>
-      <button onClick={() => setCounter(counter + 1)}>increment</button>
-      <button onClick={() => setCounter(counter - 1)}>decrement</button>
-      <br />
-      {/* use our generated component as any other */}
+    // Pass active context value to proivder
+    <Provider value={contextValue}>
+      {/* ... */}
+      {/* use generated component as any other */}
       <TestComponent />
+      {/* ... */}
     </Provider>
   );
 }

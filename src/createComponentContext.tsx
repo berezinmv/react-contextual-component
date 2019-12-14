@@ -1,27 +1,19 @@
-import React, { createContext, FC, PropsWithChildren } from "react";
-import { ComponentMap, ContextFunction } from "./createComponentContext.h";
+import React, { createContext, FC } from "react";
+import { ComponentMap, IndexType } from "./createComponentContext.h";
 
-function createComponentContext<T>(fn: ContextFunction<T>) {
-  const { Provider: RProvider, Consumer: RConsumer } = createContext<string>(
-    null
-  );
+function createComponentContext<Values extends IndexType>() {
+  const { Provider, Consumer } = createContext<Values>(null);
 
-  function Provider(props: PropsWithChildren<T>) {
-    const value = fn(props);
-
-    return <RProvider value={value}>{props.children}</RProvider>;
-  }
-
-  function createComponent<P>(componentMap: ComponentMap<P>): FC<P> {
+  function createComponent<P>(componentMap: ComponentMap<P, Values>): FC<P> {
     return function(props: P) {
       return (
-        <RConsumer>
+        <Consumer>
           {value => {
             const ContextualComponent = componentMap[value];
 
             return <ContextualComponent {...props} />;
           }}
-        </RConsumer>
+        </Consumer>
       );
     };
   }
