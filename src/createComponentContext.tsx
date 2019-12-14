@@ -1,4 +1,4 @@
-import React, { createContext, FC } from "react";
+import React, { ComponentType, createContext, FC } from "react";
 import { ComponentMap, IndexType } from "./createComponentContext.h";
 
 function createComponentContext<Values extends IndexType>() {
@@ -9,7 +9,7 @@ function createComponentContext<Values extends IndexType>() {
       return (
         <Consumer>
           {value => {
-            const ContextualComponent = componentMap[value];
+            const ContextualComponent = componentMap[value] as ComponentType<P>;
 
             return <ContextualComponent {...props} />;
           }}
