@@ -11,5 +11,5 @@
     "outDir": "lib",
     "lib": ["dom", "es2015"]
   },
-  "exclude": ["lib", "example", "node_modules"]
+  "exclude": ["lib", "example", "./**/__tests__", "node_modules"]
 }
