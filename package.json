@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "example": "parcel example/index.html",
-    "test": "jest"
+    "test": "jest",
+    "ci": "npm run test"
   },
   "husky": {
     "hooks": {

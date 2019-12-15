@@ -1,6 +1,7 @@
 .idea
 
 node_modules
+.travis.yml
 lib
 dist
 .cache

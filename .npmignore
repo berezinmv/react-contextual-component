@@ -3,6 +3,7 @@
 .cache
 dist
 src
+.travis.yml
 example
 *.map
 .prettierrc.json
