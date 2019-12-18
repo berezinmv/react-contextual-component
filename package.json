@@ -2,6 +2,12 @@
   "name": "react-contextual-component",
   "version": "0.0.2",
   "description": "React library for using different components based on current context",
+  "keywords": [
+    "react",
+    "context",
+    "component",
+    "utillity"
+  ],
   "main": "lib/createComponentContext.js",
   "scripts": {
     "build": "tsc",
