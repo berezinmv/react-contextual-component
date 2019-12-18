@@ -1,6 +1,6 @@
 {
   "name": "react-contextual-component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React library for using different components based on current context",
   "keywords": [
     "react",
