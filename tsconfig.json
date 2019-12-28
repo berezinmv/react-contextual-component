@@ -7,9 +7,9 @@
     "jsx": "react",
     "sourceMap": true,
     "declaration": true,
-    "rootDir": "src",
+    "rootDirs": ["src", "example"],
     "outDir": "lib",
     "lib": ["dom", "es2015"]
   },
-  "exclude": ["lib", "example", "./**/__tests__", "node_modules"]
+  "exclude": ["lib", "node_modules"]
 }
